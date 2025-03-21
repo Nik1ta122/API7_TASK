@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Profile - {{ user.name or user.login }}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .profile-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .profile-card img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+        .profile-card h1 {
+            font-size: 2rem;
+            margin: 0.5rem 0;
+            color: #333;
+        }
+        .profile-card p {
+            font-size: 1rem;
+            color: #666;
+            margin: 0.5rem 0;
+        }
+        .profile-card a {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .profile-card a:hover {
+            background-color: #0056b3;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1.5rem;
+        }
+        .stats div {
+            text-align: center;
+        }
+        .stats div span {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .stats div p {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0.2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <!-- Аватарка -->
+        <img src="{{ user.avatar_url }}" alt="Avatar">
+
+        <!-- Имя и логин -->
+        <h1>{{ user.name or user.login }}</h1>
+        <p>@{{ user.login }}</p>
+
+        <!-- Описание (если есть) -->
+        {% if user.bio %}
+        <p>{{ user.bio }}</p>
+        {% endif %}
+
+        <!-- Статистика -->
+        <div class="stats">
+            <div>
+                <span>{{ user.public_repos }}</span>
+                <p>Репозитории</p>
+            </div>
+            <div>
+                <span>{{ user.followers }}</span>
+                <p>Подписчики</p>
+            </div>
+            <div>
+                <span>{{ user.following }}</span>
+                <p>Подписки</p>
+            </div>
+        </div>
+
+        <!-- Ссылка на профиль GitHub -->
+        <a href="{{ user.html_url }}" target="_blank">Открыть профиль</a>
+    </div>
+</body>
+</html>
+
+
